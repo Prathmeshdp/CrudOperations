@@ -2,6 +2,8 @@ package com.BikkadIT.demo.controller;
 
 import com.BikkadIT.demo.model.User;
 import com.BikkadIT.demo.service.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserServiceI userServiceI;
 
@@ -22,7 +26,12 @@ public class UserController {
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
+        logger.info("Entering the request for save user data");
+
         User saveUser = userServiceI.createUser(user);
+
+        logger.info("Completed the request for save user data");
+
         return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
 

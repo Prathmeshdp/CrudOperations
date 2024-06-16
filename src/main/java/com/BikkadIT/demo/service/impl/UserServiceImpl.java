@@ -3,6 +3,8 @@ package com.BikkadIT.demo.service.impl;
 import com.BikkadIT.demo.model.User;
 import com.BikkadIT.demo.repository.UserRepository;
 import com.BikkadIT.demo.service.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,19 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserServiceI {
 
+    Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public User createUser(User user) {
 
+        logger.info("Intiating the dao call for the save user data");
+
         User saveUser = userRepository.save(user);
 
+        logger.info("Completed the dao call for the save user data");
         return saveUser;
     }
 
