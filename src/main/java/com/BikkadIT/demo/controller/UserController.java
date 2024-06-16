@@ -19,14 +19,14 @@ public class UserController {
     private UserServiceI userServiceI;
 
 //  @RequestMapping(method = RequestMethod.POST,name ="/users")
-    @PostMapping("/users")
+    @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
         User saveUser = userServiceI.createUser(user);
         return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers(){
 
         List<User> allUsers = userServiceI.getAllUsers();
@@ -35,8 +35,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<User> getSingleUse(@PathVariable Long userId){
+    @GetMapping("/getSingleUser/{userId}")
+    public ResponseEntity<User> getSingleUser(@PathVariable Long userId){
 
         User singleUser = userServiceI.getSingleUser(userId);
 
@@ -53,7 +53,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){
 
         userServiceI.deleteUser(userId);
