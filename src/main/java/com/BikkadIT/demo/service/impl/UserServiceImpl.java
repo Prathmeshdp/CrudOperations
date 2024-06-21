@@ -39,7 +39,11 @@ public class UserServiceImpl implements UserServiceI {
         user1.setUserAge(user.getUserAge());
         user1.setAbout(user.getAbout());
 
+        logger.info("Intiating the dao call for the update user data");
+
         User updatedUser = userRepository.save(user1);
+
+        logger.info("Completed the dao call for the update user data");
 
 
         return updatedUser;
@@ -48,7 +52,11 @@ public class UserServiceImpl implements UserServiceI {
     @Override
     public User getSingleUser(Long userId) {
 
+        logger.info("Intiating the dao call for the get single user data");
+
        User user =  userRepository.findById(userId).orElseThrow(()-> new RuntimeException("Resource Not Found On Server ! "));
+
+        logger.info("Completed the dao call for the get single user data");
         return user;
 
     }
@@ -65,7 +73,11 @@ public class UserServiceImpl implements UserServiceI {
     @Override
     public List<User> getAllUsers() {
 
+        logger.info("Intiating the dao call for the get all user data");
+
         List<User> allUsers = userRepository.findAll();
+
+        logger.info("Completed the dao call for the get all user data");
 
         return allUsers;
     }
@@ -73,9 +85,13 @@ public class UserServiceImpl implements UserServiceI {
     @Override
     public void deleteUser(Long userId) {
 
+        logger.info("Intiating the dao call for the delete user data");
+
         User user = userRepository.findById(userId).orElseThrow(()->new RuntimeException("Resource Not Found On Server ! "));
 
         userRepository.delete(user);
+
+        logger.info("Completed the dao call for the delete user data");
 
     }
 }

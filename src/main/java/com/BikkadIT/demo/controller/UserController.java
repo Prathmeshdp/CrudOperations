@@ -38,7 +38,11 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers(){
 
+        logger.info("Entering the request for get all user data");
+
         List<User> allUsers = userServiceI.getAllUsers();
+
+        logger.info("Completed the request for get all user data");
 
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
@@ -47,7 +51,11 @@ public class UserController {
     @GetMapping("/getSingleUser/{userId}")
     public ResponseEntity<User> getSingleUser(@PathVariable Long userId){
 
+        logger.info("Entering the request for get user data by id");
+
         User singleUser = userServiceI.getSingleUser(userId);
+
+        logger.info("Completed the request for get user data by id");
 
         return new ResponseEntity<>(singleUser, HttpStatus.OK);
 
@@ -56,7 +64,11 @@ public class UserController {
     @PutMapping("/updateUser/{userId}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long userId) {
 
+        logger.info("Entering the request for update user data");
+
         User updateUser = userServiceI.updateUser(user,userId);
+
+        logger.info("Completed the request for update user data");
 
         return new ResponseEntity<>(updateUser, HttpStatus.CREATED);
 
@@ -65,7 +77,11 @@ public class UserController {
     @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){
 
+        logger.info("Entering the request for delete user data");
+
         userServiceI.deleteUser(userId);
+
+        logger.info("Completed the request for delete user data");
 
         return new ResponseEntity<>("Resource Delete Successfully !!", HttpStatus.OK);
     }
